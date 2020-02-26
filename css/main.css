@@ -1,0 +1,73 @@
+.container {
+  position:  static;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+#description h1 {
+  text-align: center;
+}
+
+.tooltip {
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: -10000px;
+  left: -10000px;
+  pointer-events: none;
+}
+
+#map .tooltip {
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 12px;
+}
+
+
+.legend { list-style: none; }
+.legend li { float: left; margin-right: 10px; }
+.legend span { float: left; }
+.legend .map-legend-color-block { width: 12px; height: 12px; margin: 2px; }
+.legend .map-legend-text {font-size: 12px; margin-left: 5px;}
+
+
+#map-legend {
+  margin-top: 20px;
+}
+
+#quick-selection select {
+  width: 100%;
+  margin-top: 10px;
+}
+
+#map, #dd-index {
+  height: 400px;
+  position: relative;
+}
+
+#main-chart-legend {
+  margin-top: 50px;
+}
+
+#leaders {
+  position: relative;
+}
+
+.score-line, .line-over {
+  pointer-events: none;
+}
+
+#heatmap-selection select {
+  width: 100%;
+}
+
+#leaders-main-chart {
+  cursor: pointer;
+  pointer-events: all;
+}
+
+#leaders svg {
+  cursor: pointer;
+  pointer-events: all;
+}

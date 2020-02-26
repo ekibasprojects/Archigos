@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Political Leaders and Level of Democracy</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<script src="http://d3js.org/topojson.v1.min.js"></script>
+	<script src="js/d3-extended.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+
+</head>
+<body>
+	<div class="container">
+		<div class="section row">
+			<div id="description" class="twelve columns">
+				<h1>Political Leaders and Democracy-Dictatorship Scores</h1>
+				<p>
+					This is a chart showing <strong>Leaders</strong>, their <strong>Age</strong> and <strong>Gender</strong> 
+					and the yearly <strong>Democracy-Dictatorship Score (DD Score)</strong> of the respective countries from 1945 to 2015 based on the <a href="http://privatewww.essex.ac.uk/~ksg/archigos.html" target="_blank">Archigos</a> and <a href="http://www.systemicpeace.org/inscrdata.html" target="_blank">Polity IV</a> datasets.
+				</p>
+				<p>Here, <strong>Age</strong> is the age of the Leaders at the end of their tenure. DD Score ranges from -10 to 10, with -10 to -6 corresponding to autocracies, -5 to 5 corresponding to anocracies, and 6 to 10 to democracies.</p>
+			</div>
+		</div>
+		<div class="section row">
+			<div id="quick-selection" class="three columns">
+				<select v-model="selectedSetName" v-on:change="onChange">
+				  <option v-for="set in sets" v-bind:value="set.name">
+				    {{ set.name }}
+				  </option>
+				</select>
+			</div>
+			<div id="map-legend" class="nine columns">
+				<ul class="legend">
+				    <li v-for="(continent, index) in continents">
+				    	<span class="map-legend-color-block" v-bind:class="continent" v-bind:style="{ 'background-color': countryColorScheme[index] }"></span>
+				    	<span class="map-legend-text">{{continent}}</span>
+				    </li>
+				</ul>
+			</div>
+		</div>
+		<div class="section row">
+			<div id="map" class="twelve columns">
+				<svg class="chart"></svg>
+				<div class="tooltip"></div>
+			</div>
+		</div> 
+		<div id="main-chart-legend" class="section row">
+			<div id="heatmap-selection" class="two columns">
+				<select v-model="selectedHeatMap" v-on:change="onChange">
+				  <option v-for="opt in heatMapOptions" v-bind:value="opt">
+				    {{ opt }}
+				  </option>
+				</select>
+			</div>
+			<div id="heatmap-legend" class="nine columns">
+				<svg></svg>
+			</div>
+		</div>
+		<div class="section row">
+			<div id="leaders" class="twelve columns">
+				<svg class="chart"></svg>
+			</div>
+		</div>
+		<div id="leaders-tooltip">
+			<svg></svg>
+		</div>
+	</div>
+	<script src="js/main.js"></script>
+</body>
+</html>
